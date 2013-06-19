@@ -1,14 +1,19 @@
 <table>
   <tr>
     <th>Forums</th>  
+    <th>Topics</th>
+    <th>Latest</th>
   </tr>
 
 <% @forums.each do |forum| %>
   <tr>
-    <td><h2><%= link_to forum.title, forum %></h2>
-    <i><%= forum.description %></i><br><%= pluralize(forum.topics.count, "topic") %></td>
-    <td><%= link_to 'Edit', edit_forum_path(forum) %> | 
-    <%= link_to 'Destroy', forum, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+    <td><h3><%= link_to forum.title, forum %></h3>
+    <i><%= forum.description %></i></td>
+    <td><%= forum.topics.count %></td>
+    <td><%= link_to forum.topics.first.title, topic_path(forum) %><br />
+    by [username]</td>
+    <td><%= link_to 'Edit', edit_forum_path(forum) %>,  
+    <%= link_to 'Destroy!', forum, method: :delete, data: { confirm: 'Are you sure? ლ(ಠ益ಠლ' } %></td>
   </tr>
 <% end %>
 </table>

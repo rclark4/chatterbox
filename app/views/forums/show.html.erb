@@ -17,8 +17,12 @@
   <tr>
     <td><b><%= link_to topic.title, topic %></b><br />
     <i><%= truncate(topic.content, :length => 75) %></i></td>
-    <td>by [username] <%= time_ago_in_words topic.created_at %> ago</td>
-    <td><%= pluralize(topic.posts.count, "reply") %></td>
+    <td>by [username]<br />
+    <small><%= time_ago_in_words topic.created_at %> ago </small></td>
+    <td><%= pluralize(topic.posts.count, "reply") %><br />
+    <% if topic.posts.count > 0  %>
+    <small><%= time_ago_in_words topic.posts.last.created_at %> ago</small>
+    <% else %>No posts<% end %></td>
     <td># votes<%#= pluralize(topic.votes.count, "votes") %></td>
   </tr>
 <% end %>
