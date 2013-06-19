@@ -1,0 +1,25 @@
+<p id="notice"><%= notice %></p>
+<h2><%= @forum.title %></h2>
+<i><%= @forum.description %></i>
+<p>
+<%= link_to 'New Topic', new_topic_path %> | <%= link_to 'Edit Forum', edit_forum_path(@forum) %>
+</p>
+
+<table>
+  <tr>
+    <th>Topics</th>
+    <th>Author</th>
+    <th>Replies</th>
+    <th>Votes</th>
+  </tr>
+
+<% @forum.topics.each do |topic| %>
+  <tr>
+    <td><b><%= link_to topic.title, topic %></b><br />
+    <i><%= truncate(topic.content, :length => 75) %></i></td>
+    <td>by [username] <%= time_ago_in_words topic.created_at %> ago</td>
+    <td><%= pluralize(topic.posts.count, "reply") %></td>
+    <td># votes<%#= pluralize(topic.votes.count, "votes") %></td>
+  </tr>
+<% end %>
+</table>

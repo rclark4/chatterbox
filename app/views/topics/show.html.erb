@@ -1,0 +1,26 @@
+<p id="notice"><%= notice %></p>
+<h2><%= @topic.title %></h2>
+<%= @topic.content %>
+
+<p>
+<%= link_to 'Reply to Topic', new_post_path %> | <%= link_to 'Edit Topic', edit_topic_path %>
+</p>
+
+<% @topic.posts.each do |post| %>
+  
+	<p>
+		<b>[username]</b>
+		<br />
+	  <%= post.content %>
+  </p>
+
+  <p>
+    <%= time_ago_in_words post.created_at %> ago
+  </p>
+
+  <p>
+    # votes <%#= pluralize(topic.votes.count, "votes") %>
+  </p>
+
+<% end %>
+<%= link_to 'Reply to Topic', new_post_path %>
